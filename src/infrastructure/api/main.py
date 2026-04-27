@@ -4,6 +4,7 @@ from datetime import UTC, datetime
 
 from fastapi import Depends, FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import RedirectResponse
 from sqlalchemy.orm import Session
 
 from src.application.chat_service import ChatService
@@ -38,21 +39,9 @@ def on_startup() -> None:
 
 
 @app.get("/")
-def root() -> dict:
-    """Retorna informacion basica de la API."""
-    return {
-        "name": "E-commerce Chat AI API",
-        "version": "1.0.0",
-        "docs": "/docs",
-        "endpoints": [
-            "GET /products",
-            "GET /products/{product_id}",
-            "POST /chat",
-            "GET /chat/history/{session_id}",
-            "DELETE /chat/history/{session_id}",
-            "GET /health",
-        ],
-    }
+def root() -> RedirectResponse:
+    """Redirige a la documentacion interactiva de la API."""
+    return RedirectResponse(url="/docs", status_code=307)
 
 
 @app.get("/products", response_model=list[ProductDTO])
