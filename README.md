@@ -118,9 +118,3 @@ docker-compose up --build
 ```bash
 pytest -q
 ```
-
-## Notas de IA
-Si `GEMINI_API_KEY` no esta definida o Gemini no esta disponible, el sistema responde con un fallback local para no romper el flujo de chat.
-
-## Autor
-Proyecto academico - Universidad EAFIT.
